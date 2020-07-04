@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Adocao.Models.ContratoAdocao>
+
+@{
+    ViewBag.Title = "Contrato de adoção";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Adicionar novo contrato", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Pet
+        </th>
+        <th>
+            Adotante
+        </th>
+        <th>
+            ONG
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomePet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeAdotante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ONG.Nome)
+        </td>
+    </tr>
+}
+
+</table>

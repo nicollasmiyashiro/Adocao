@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Adocao.Models.ONG>
+
+@{
+    ViewBag.Title = "ONG";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar nova ONG", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CPF)
+        </th>
+        <th>Editar</th>
+        <th>Deletar</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CPF)
+        </td>
+        <td>
+            <a href="/ONG/Edit/@(item.ID)" class="btn btn-default">Editar</a>
+        </td>
+        <td>
+            <form method="POST" action="/ONG/Delete/@(item.ID)" onsubmit="if (!confirm('Tem certeza da exclusão?')) event.preventDefault()">
+                @Html.AntiForgeryToken()
+                <input type="submit" class="btn btn-default" value="Deletar" />
+            </form>
+        </td>
+    </tr>
+}
+
+</table>
